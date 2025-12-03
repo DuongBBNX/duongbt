@@ -1,0 +1,381 @@
+ <!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hành Trình Sinh Viên Năm Nhất - Vũ Ngọc Dương</title>
+    <!-- Tải Tailwind CSS để sử dụng các lớp tiện ích cho styling và responsive --><script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Thiết lập font Inter làm font chính */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Nền tổng thể nhẹ nhàng hơn */
+            color: #334155; /* Màu chữ tối dịu hơn */
+        }
+        /* Style cho nút menu trên mobile */
+        #mobile-menu-button {
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Hiệu ứng mờ dần khi cuộn */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Màu active cho menu */
+        .nav-item.active, .mobile-nav-item.active {
+            background-color: #0d9488; /* teal-600 */
+            color: white;
+        }
+    </style>
+</head>
+<body class="text-gray-700">
+
+    <!-- Thanh Điều Hướng (Navigation Bar) --><header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo/Tên Trang --><div class="flex-shrink-0">
+                    <a href="#trang-chu" class="text-2xl font-bold text-teal-600 hover:text-teal-800 transition duration-300">
+                        Vũ Ngọc Dương
+                    </a>
+                </div>
+
+                <!-- Menu Desktop --><nav class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#trang-chu" class="nav-item text-gray-600 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md font-medium transition duration-300">Trang Chủ</a>
+                        <a href="#hanh-trinh" class="nav-item text-gray-600 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md font-medium transition duration-300">Hành Trình</a>
+                        <a href="#thu-vien-anh" class="nav-item text-gray-600 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md font-medium transition duration-300">Thư Viện Ảnh</a>
+                        <a href="#ky-nang" class="nav-item text-gray-600 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md font-medium transition duration-300">Kỹ Năng & Sở Thích</a>
+                        <a href="#lien-he" class="nav-item text-gray-600 hover:bg-teal-500 hover:text-white px-3 py-2 rounded-md font-medium transition duration-300">Liên Hệ</a>
+                    </div>
+                </nav>
+
+                <!-- Nút Menu Mobile (Hamburger) --><div class="flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="bg-teal-500 inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-teal-500 focus:ring-white transition duration-300" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Mở menu chính</span>
+                        <!-- Icon menu (khi đóng) --><svg id="menu-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <!-- Icon đóng (khi mở) --><svg id="close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile (Ẩn/Hiện) --><div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#trang-chu" class="mobile-nav-item text-gray-600 hover:bg-teal-500 hover:text-white block px-3 py-2 rounded-md font-medium transition duration-300">Trang Chủ</a>
+                <a href="#hanh-trinh" class="mobile-nav-item text-gray-600 hover:bg-teal-500 hover:text-white block px-3 py-2 rounded-md font-medium transition duration-300">Hành Trình</a>
+                        <a href="#thu-vien-anh" class="mobile-nav-item text-gray-600 hover:bg-teal-500 hover:text-white block px-3 py-2 rounded-md font-medium transition duration-300">Thư Viện Ảnh</a>
+                        <a href="#ky-nang" class="mobile-nav-item text-gray-600 hover:bg-teal-500 hover:text-white block px-3 py-2 rounded-md font-medium transition duration-300">Kỹ Năng & Sở Thích</a>
+                        <a href="#lien-he" class="mobile-nav-item text-gray-600 hover:bg-teal-500 hover:text-white block px-3 py-2 rounded-md font-medium transition duration-300">Liên Hệ</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Phần 1: Trang Chủ (Hero Section) --><section id="trang-chu" class="fade-in-section bg-teal-500 text-white pt-20 pb-32">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="max-w-3xl mx-auto">
+                    <!-- Ảnh đại diện/Placeholder --><div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                        <!-- ID: avatar-image được thêm vào để JS dễ dàng cập nhật src --><img id="avatar-image" src="https://placehold.co/128x128/9CA3AF/FFFFFF?text=DƯƠNG" alt="Ảnh đại diện" class="w-full h-full object-cover">
+                    </div>
+                    <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 leading-tight">
+                        Vũ Ngọc Dương (PK04567)
+                    </h1>
+                    <p class="text-xl sm:text-2xl mb-8 font-light">
+                        Sinh viên **Lập trình ứng dụng AI** - Cao đẳng FPT. Bắt đầu hành trình công nghệ từ Hải Phòng.
+                    </p>
+                    <a href="#hanh-trinh" class="bg-white text-teal-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 inline-block">
+                        Hành Trình & Kỹ Năng
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần 2: Hành Trình (Timeline Section) --><section id="hanh-trinh" class="fade-in-section py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-teal-700 mb-12">Hành Trình Năm Nhất</h2>
+                <div class="relative max-w-4xl mx-auto">
+                    <!-- Đường kẻ thời gian (Timeline Line) --><div class="absolute hidden md:block w-1 bg-teal-200 h-full left-1/2 transform -translate-x-1/2"></div>
+
+                    <!-- Cột Mốc 1: Nhập học (Đã sửa thành Tháng 5) --><div class="mb-8 flex justify-between items-center w-full right-timeline">
+                        <div class="w-full md:w-1/2 md:pr-8">
+                            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-teal-500 transform hover:scale-[1.02] transition duration-300">
+                                <h3 class="text-2xl font-semibold text-teal-600 mb-2">Tháng 5: Khởi đầu tại FPT</h3>
+                                <p class="text-gray-600">Chính thức nhập học ngành AI. Tập trung làm quen môi trường và các môn học nền tảng.</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:block w-1/12 text-center">
+                            <div class="w-8 h-8 bg-teal-500 rounded-full inline-flex items-center justify-center text-white ring-4 ring-teal-200">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2"></div>
+                    </div>
+
+                    <!-- Cột Mốc 2: Nền tảng lập trình --><div class="mb-8 flex justify-between items-center w-full left-timeline">
+                        <div class="w-full md:w-1/2"></div>
+                        <div class="hidden md:block w-1/12 text-center">
+                            <div class="w-8 h-8 bg-teal-500 rounded-full inline-flex items-center justify-center text-white ring-4 ring-teal-200">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2 md:pl-8">
+                            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-teal-500 transform hover:scale-[1.02] transition duration-300">
+                                <h3 class="text-2xl font-semibold text-teal-600 mb-2">Tháng 11: Làm chủ Code</h3>
+                                <p class="text-gray-600">Hoàn thành nền tảng lập trình cơ bản (Python/C++). Bắt đầu thực hành các thuật toán.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cột Mốc 3: Hoàn thành HK1 --><div class="mb-8 flex justify-between items-center w-full right-timeline">
+                        <div class="w-full md:w-1/2 md:pr-8">
+                            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-teal-500 transform hover:scale-[1.02] transition duration-300">
+                                <h3 class="text-2xl font-semibold text-teal-600 mb-2">Tháng 1: Kết thúc Học kỳ I</h3>
+                                <p class="text-gray-600">Hoàn thành Học kỳ I. Đặt mục tiêu tìm hiểu chuyên sâu về Machine Learning.</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:block w-1/12 text-center">
+                            <div class="w-8 h-8 bg-teal-500 rounded-full inline-flex items-center justify-center text-white ring-4 ring-teal-200">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần 3: Thư Viện Ảnh (Gallery Section) --><section id="thu-vien-anh" class="fade-in-section py-20 bg-gray-100">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-teal-700 mb-12">Thư Viện Ảnh</h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Ảnh 1: Ảnh sinh hoạt --><div class="rounded-xl overflow-hidden shadow-xl transform hover:scale-[1.05] transition duration-300 group cursor-pointer">
+                        <img src="https://picsum.photos/id/1018/600/400" onerror="this.onerror=null;this.src='https://drive.google.com/file/d/17LAxThRHgmsobzmlD7_Og8wJbolABhQT/view?usp=sharing';" alt="Ảnh sinh hoạt" class="w-full h-48 object-cover">
+                        <div class="p-4 bg-white">
+                            <p class="text-lg font-semibold text-teal-600">Ảnh sinh hoạt</p>
+                            <p class="text-sm text-gray-500">Buổi ăn uống và trò chuyện cùng bạn bè.</p>
+                        </div>
+                    </div>
+                    <!-- Ảnh 2: Giờ học Lập trình AI --><div class="rounded-xl overflow-hidden shadow-xl transform hover:scale-[1.05] transition duration-300 group cursor-pointer">
+                        <img src="https://picsum.photos/id/30/600/400" onerror="this.onerror=null;this.src='https://placehold.co/600x400/6B7280/FFFFFF?text=Giờ+Học+AI';" alt="Giờ học Lập trình AI" class="w-full h-48 object-cover">
+                        <div class="p-4 bg-white">
+                            <p class="text-lg font-semibold text-teal-600">Giờ học Lập trình AI</p>
+                            <p class="text-sm text-gray-500">Thuyết trình mô hình học máy.</p>
+                        </div>
+                    </div>
+                    <!-- Ảnh 3: Hoạt động Team Building (Sử dụng Placeholder + Thêm Link Drive vào mô tả) --><div class="rounded-xl overflow-hidden shadow-xl transform hover:scale-105 transition duration-300 group cursor-pointer">
+                        <!-- Sử dụng lại ảnh placeholder để đảm bảo hiển thị -->
+                        <img src="https://placehold.co/600x400/0891B2/FFFFFF?text=TEAM+BUILDING" alt="Hoạt động Team Building" class="w-full h-48 object-cover">
+                        <div class="p-4 bg-white">
+                            <p class="text-lg font-semibold text-teal-600">Hoạt động Team Building</p>
+                            <!-- Chèn đường dẫn Google Drive vào mô tả để người dùng có thể click -->
+                            <p class="text-sm text-gray-500">
+                                Sự kiện chào đón tân sinh viên. 
+                                <a href="https://drive.google.com/file/d/17LAxThRHgmsobzmlD7_Og8wJbolABhQT/view?usp=sharing" target="_blank" class="text-sky-500 hover:text-sky-700 font-medium">(Xem ảnh trên Drive)</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần 4: Kỹ Năng & Sở Thích (Personal Content) --><section id="ky-nang" class="fade-in-section py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-teal-700 mb-12">Kỹ Năng & Sở Thích</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Kỹ Năng (Skills) --><div class="p-8 bg-gray-50 rounded-xl shadow-lg border-l-4 border-sky-500">
+                        <h3 class="text-3xl font-bold text-sky-600 mb-6 flex items-center">
+                            <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1v-3m-6 0h8m-8 0a1 1 0 001 1h6a1 1 0 001-1m-7 0H9m-6 0v-4a2 2 0 012-2h14a2 2 0 012 2v4m-12 5h10v2a2 2 0 01-2 2H9a2 2 0 01-2-2v-2zm7 0h2v2h-2v-2z"></path></svg>
+                            Kỹ Năng Chuyên Môn
+                        </h3>
+                        <ul class="space-y-4">
+                            <!-- Kỹ năng 1: Lập trình AI/Python --><li class="p-3 bg-white rounded-lg shadow-sm">
+                                <p class="font-semibold">Python & AI Basics</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
+                                    <div class="bg-sky-500 h-2.5 rounded-full" style="width: 50%"></div>
+                                </div>
+                                <span class="text-sm text-gray-500">Tìm hiểu thư viện AI cơ bản (NumPy, Pandas).</span>
+                            </li>
+                            <!-- Kỹ năng 2: Logic & Cờ Vua --><li class="p-3 bg-white rounded-lg shadow-sm">
+                                <p class="font-semibold">Tư Duy Chiến Thuật</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
+                                    <div class="bg-sky-500 h-2.5 rounded-full" style="width: 80%"></div>
+                                </div>
+                                <span class="text-sm text-gray-500">Rèn luyện qua Cờ Vua, hỗ trợ tư duy lập trình.</span>
+                            </li>
+                             <!-- Kỹ năng 3: Làm việc nhóm --><li class="p-3 bg-white rounded-lg shadow-sm">
+                                <p class="font-semibold">Kỹ Năng Hợp Tác</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
+                                    <div class="bg-sky-500 h-2.5 rounded-full" style="width: 75%"></div>
+                                </div>
+                                <span class="text-sm text-gray-500">Tham gia dự án và thảo luận nhóm hiệu quả.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Sở Thích (Hobbies) --><div class="p-8 bg-gray-50 rounded-xl shadow-lg border-l-4 border-lime-500">
+                        <h3 class="text-3xl font-bold text-lime-600 mb-6 flex items-center">
+                            <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                            Sở Thích Cá Nhân
+                        </h3>
+                        <ul class="space-y-4 text-gray-600">
+                            <li class="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                                <span class="text-2xl text-lime-500">♟️</span>
+                                <p>Cờ Vua: Rèn luyện tập trung và chiến lược.</p>
+                            </li>
+                            <li class="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                                <span class="text-2xl text-lime-500">📖</span>
+                                <p>Đọc Sách: Khoa học, kỹ năng, tâm lý.</p>
+                            </li>
+                            <li class="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                                <span class="text-2xl text-lime-500">🎮</span>
+                                <p>Chơi Game: Thể loại chiến thuật, phiêu lưu.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần 5: Liên Hệ (Contact Section) --><section id="lien-he" class="fade-in-section py-20 bg-teal-600 text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-bold mb-4">Kết Nối Với Tôi</h2>
+                <p class="text-xl mb-12 opacity-90 max-w-2xl mx-auto">
+                    MSSV: **PK04567** | Quê quán: **Hải Phòng**. Rất mong được kết nối với mọi người!
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-8">
+                    <!-- Email --><div class="flex items-center justify-center p-4 bg-teal-700 rounded-xl shadow-xl transform hover:scale-105 transition duration-300">
+                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 4v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path></svg>
+                        <a href="mailto:duongvnpk04567@gmail.com" class="font-medium">duongvnpk04567@gmail.com</a>
+                    </div>
+                    <!-- Điện thoại (Giữ nguyên placeholder) --><div class="flex items-center justify-center p-4 bg-teal-700 rounded-xl shadow-xl transform hover:scale-105 transition duration-300">
+                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.128a11.042 11.042 0 005.516 5.516l1.128-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-11a2 2 0 01-2-2v-5a2 2 0 012-2z"></path></svg>
+                        <span class="font-medium">(+84) XXX XXX XXX</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer --><footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">&copy; 2025 **FPT Polytechnic**. Trang web giới thiệu cá nhân sinh viên năm nhất.</p>
+            <p class="text-xs mt-2 text-gray-400">Thiết kế với Tailwind CSS & Responsive Design.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript cho tương tác và hiệu ứng --><script>
+        // *** KHU VỰC CẤU HÌNH ẢNH ***
+        // Thay thế URL dưới đây bằng URL ảnh đại diện của bạn.
+        const AVATAR_URL = 'https://placehold.co/128x128/9CA3AF/FFFFFF?text=DƯƠNG'; 
+        // Thay thế URL dưới đây bằng URL ảnh đại diện của bạn.
+        // const AVATAR_URL = 'https://picsum.photos/id/1025/128/128'; 
+
+        // Gán URL ảnh vào thẻ <img> sau khi DOM được tải
+        document.addEventListener('DOMContentLoaded', () => {
+            const avatarImage = document.getElementById('avatar-image');
+            if (avatarImage) {
+                avatarImage.src = AVATAR_URL;
+            }
+        });
+
+        // Lấy các phần tử DOM
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const navItems = document.querySelectorAll('.nav-item');
+        const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+        const sections = document.querySelectorAll('.fade-in-section');
+
+        // Hàm chuyển đổi trạng thái menu mobile
+        function toggleMobileMenu() {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        // Lắng nghe sự kiện click cho nút menu mobile
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+        // Đóng menu mobile khi click vào một item
+        mobileNavItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Kiểm tra nếu menu đang mở thì đóng lại
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // =========================================================
+        // JavaScript cho hiệu ứng cuộn (Intersection Observer)
+        // =========================================================
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.3 // Kích hoạt khi 30% phần tử hiển thị
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    updateActiveNavItem(entry.target.id);
+                } else {
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // =========================================================
+        // JavaScript cho tính năng Active Menu Item khi cuộn
+        // =========================================================
+
+        function updateActiveNavItem(activeSectionId) {
+            const hash = `#${activeSectionId}`;
+
+            // Cập nhật menu desktop
+            navItems.forEach(item => {
+                item.classList.remove('active', 'bg-teal-600', 'text-white');
+                item.classList.add('text-gray-600', 'hover:bg-teal-500', 'hover:text-white');
+                if (item.getAttribute('href') === hash) {
+                    item.classList.add('active'); // Thêm lớp active
+                }
+            });
+
+            // Cập nhật menu mobile
+            mobileNavItems.forEach(item => {
+                item.classList.remove('active', 'bg-teal-600', 'text-white');
+                item.classList.add('text-gray-600', 'hover:bg-teal-500', 'hover:text-white');
+                if (item.getAttribute('href') === hash) {
+                    item.classList.add('active'); // Thêm lớp active
+                }
+            });
+        }
+
+        // Khởi tạo active item cho Trang Chủ khi tải trang
+        document.addEventListener('DOMContentLoaded', () => {
+            updateActiveNavItem('trang-chu');
+        });
+        
+    </script>
+</body>
+</html>
